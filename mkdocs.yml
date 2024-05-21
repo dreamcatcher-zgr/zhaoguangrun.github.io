@@ -1,4 +1,8 @@
-site_name: My Docs
+site_name: 赵广润的网页
+theme: 
+  name: material
+  language: zh
 nav:
-        - 主页: index.md
-        - lora: lora.md
+  - 主页: index.md
+  - 算法: 
+    - 卡尔曼滤波: 卡尔曼滤波.md

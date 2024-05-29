@@ -4,5 +4,9 @@ theme:
   language: zh
 nav:
   - 主页: index.md
+  - mkdocs配置: mkdocs配置.md
+  - markdown语法: markdown语法.md
+  - 深度学习: 
+    - 参数量分析: 参数量分析.md
   - 算法: 
     - 卡尔曼滤波: 卡尔曼滤波.md

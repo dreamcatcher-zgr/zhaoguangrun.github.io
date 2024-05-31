@@ -1,0 +1,1075 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../markdown%E8%AF%AD%E6%B3%95/">
+      
+      
+        <link rel="next" href="../%E5%8F%82%E6%95%B0%E9%87%8F%E5%88%86%E6%9E%90/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.23">
+    
+    
+      
+        <title>yolo系列模型 - 赵广润的网页</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6543a935.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#yolo" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="赵广润的网页" class="md-header__button md-logo" aria-label="赵广润的网页" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            赵广润的网页
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              yolo系列模型
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="赵广润的网页" class="md-nav__button md-logo" aria-label="赵广润的网页" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    赵广润的网页
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mkdocs%E9%85%8D%E7%BD%AE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    mkdocs配置
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../markdown%E8%AF%AD%E6%B3%95/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    markdown语法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    深度学习
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            深度学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    模型介绍
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            模型介绍
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    yolo系列模型
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    yolo系列模型
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      性能比较
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      模型概述
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="模型概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#yolov8" class="md-nav__link">
+    <span class="md-ellipsis">
+      yolov8
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      模型结构
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="模型结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#yolov5" class="md-nav__link">
+    <span class="md-ellipsis">
+      yolov5
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="yolov5">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c3" class="md-nav__link">
+    <span class="md-ellipsis">
+      C3模块
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bottleneck" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bottleneck模块
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yolov8_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      yolov8
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="yolov8">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backboneneck" class="md-nav__link">
+    <span class="md-ellipsis">
+      backbone和neck
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c2f" class="md-nav__link">
+    <span class="md-ellipsis">
+      C2f模块
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      损失计算
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据增强和训练策略
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    LLM技术
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            LLM技术
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%8F%82%E6%95%B0%E9%87%8F%E5%88%86%E6%9E%90/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    参数量分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    算法
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            算法
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    卡尔曼滤波
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      性能比较
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      模型概述
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="模型概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#yolov8" class="md-nav__link">
+    <span class="md-ellipsis">
+      yolov8
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      模型结构
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="模型结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#yolov5" class="md-nav__link">
+    <span class="md-ellipsis">
+      yolov5
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="yolov5">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c3" class="md-nav__link">
+    <span class="md-ellipsis">
+      C3模块
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bottleneck" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bottleneck模块
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yolov8_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      yolov8
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="yolov8">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backboneneck" class="md-nav__link">
+    <span class="md-ellipsis">
+      backbone和neck
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c2f" class="md-nav__link">
+    <span class="md-ellipsis">
+      C2f模块
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      损失计算
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据增强和训练策略
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="yolo">yolo系列介绍</h1>
+<h2 id="_1">性能比较</h2>
+<p>YOLOv8 相比 YOLOv5 精度提升非常多，但是 N/S/M 模型相应的参数量和 FLOPs 都增加了不少</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">模型</th>
+<th style="text-align: center;">YOLOv5</th>
+<th style="text-align: center;">params<strong>(M)</strong></th>
+<th style="text-align: center;">FLOPs<strong>@640 (B)</strong></th>
+<th style="text-align: center;">YOLOv8</th>
+<th style="text-align: center;">params<strong>(M)</strong></th>
+<th style="text-align: center;">FLOPs<strong>@640 (B)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">n</td>
+<td style="text-align: center;">28.0(300e)</td>
+<td style="text-align: center;">1.9</td>
+<td style="text-align: center;">4.5</td>
+<td style="text-align: center;">37.3(500e)</td>
+<td style="text-align: center;">3.2</td>
+<td style="text-align: center;">8.7</td>
+</tr>
+<tr>
+<td style="text-align: center;">s</td>
+<td style="text-align: center;">37.4(300e)</td>
+<td style="text-align: center;">7.2</td>
+<td style="text-align: center;">16.5</td>
+<td style="text-align: center;">44.9(500e)</td>
+<td style="text-align: center;">11.2</td>
+<td style="text-align: center;">28.6</td>
+</tr>
+<tr>
+<td style="text-align: center;">m</td>
+<td style="text-align: center;">45.4(300e)</td>
+<td style="text-align: center;">21.2</td>
+<td style="text-align: center;">49.0</td>
+<td style="text-align: center;">50.2(500e)</td>
+<td style="text-align: center;">25.9</td>
+<td style="text-align: center;">78.9</td>
+</tr>
+<tr>
+<td style="text-align: center;">l</td>
+<td style="text-align: center;">49.0(300e)</td>
+<td style="text-align: center;">46.5</td>
+<td style="text-align: center;">109.1</td>
+<td style="text-align: center;">52.9(500e)</td>
+<td style="text-align: center;">43.7</td>
+<td style="text-align: center;">165.2</td>
+</tr>
+<tr>
+<td style="text-align: center;">x</td>
+<td style="text-align: center;">50.7(300e)</td>
+<td style="text-align: center;">86.7</td>
+<td style="text-align: center;">205.7</td>
+<td style="text-align: center;">53.9(500e)</td>
+<td style="text-align: center;">68.2</td>
+<td style="text-align: center;">257.8</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_2">模型概述</h2>
+<h3 id="yolov8">yolov8</h3>
+<ol>
+<li>提供了一个全新的 SOTA 模型，包括 P5 640 和 P6 1280 分辨率 的目标检测网络和基于 YOLACT 的实例分割模型。和 YOLOv5 一样，基于缩放系数也提供了 N/S/M/L/X 尺度的不同大小模型，用于满足不同场景需求</li>
+<li>骨干网络和 Neck 部分可能参考了 YOLOv7 ELAN 设计思想，将 YOLOv5 的 C3 结构换成了梯度流更丰富的 C2f 结构，并对不同尺度模型调整了不同的通道数，属于对模型结构精心微调，不再是无脑一套参数应用所有模型，大幅提升了模型性能。不过这个 C2f 模块中存在 Split 等操作对特定硬件部署没有之前那么友好了</li>
+<li>Head 部分相比 YOLOv5 改动较大，换成了目前主流的解耦头结构，将分类和检测头分离，同时也从 Anchor-Based 换成了 Anchor-Free</li>
+<li>Loss 计算方面采用了 TaskAlignedAssigner 正样本分配策略，并引入了 Distribution Focal Loss</li>
+<li>训练的数据增强部分引入了 YOLOX 中的最后 10 epoch 关闭 Mosiac 增强的操作，可以有效地提升精度</li>
+</ol>
+<h2 id="_3">模型结构</h2>
+<h3 id="yolov5">yolov5</h3>
+<p><a class="glightbox" href="../pics/yolov5-p5.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../pics/yolov5-p5.jpg" /></a></p>
+<h4 id="c3">C3模块</h4>
+<p>包含3个标准卷积和多个Bottleneck模块<br />
+<a class="glightbox" href="../pics/c3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../pics/c3.png" /></a>
+模块代码如下  </p>
+<pre><code>class C3(nn.Module):
+    &quot;&quot;&quot;CSP Bottleneck with 3 convolutions.&quot;&quot;&quot;
+
+    def __init__(self, c1, c2, n=1, shortcut=True, g=1, e=0.5):
+        &quot;&quot;&quot;Initialize the CSP Bottleneck with given channels, number, shortcut, groups, and expansion values.&quot;&quot;&quot;
+        super().__init__()
+        c_ = int(c2 * e)  # hidden channels
+        self.cv1 = Conv(c1, c_, 1, 1)
+        self.cv2 = Conv(c1, c_, 1, 1)
+        self.cv3 = Conv(2 * c_, c2, 1)  # optional act=FReLU(c2)
+        self.m = nn.Sequential(*(Bottleneck(c_, c_, shortcut, g, k=((1, 1), (3, 3)), e=1.0) for _ in range(n)))
+
+    def forward(self, x):
+        &quot;&quot;&quot;Forward pass through the CSP bottleneck with 2 convolutions.&quot;&quot;&quot;
+        return self.cv3(torch.cat((self.m(self.cv1(x)), self.cv2(x)), 1))
+</code></pre>
+<h4 id="bottleneck">Bottleneck模块</h4>
+<ol>
+<li>先将channel 数减小再扩大（默认减小到一半），具体做法是先进行1×1卷积将channel减小一半，再通过3×3卷积将通道数加倍，并获取特征（共使用两个标准卷积模块），其输入与输出的通道数是不发生改变的</li>
+<li>shortcut参数控制是否进行残差连接</li>
+<li>在yolov5的backbone中的Bottleneck都默认使shortcut为True，在head中的Bottleneck都不使用shortcut</li>
+<li>与ResNet对应的，使用add而非concat进行特征融合，使得融合后的特征数不变
+模块代码如下  </li>
+</ol>
+<pre><code class="language-python">class Bottleneck(nn.Module):
+    # Standard bottleneck
+    def __init__(self, c1, c2, shortcut=True, g=1, e=0.5):  # ch_in, ch_out, shortcut, groups, expansion
+        super(Bottleneck, self).__init__()
+        c_ = int(c2 * e)  # hidden channels
+        self.cv1 = Conv(c1, c_, 1, 1)
+        self.cv2 = Conv(c_, c2, 3, 1, g=g)
+        self.add = shortcut and c1 == c2
+
+    def forward(self, x):
+        return x + self.cv2(self.cv1(x)) if self.add else self.cv2(self.cv1(x))
+</code></pre>
+<h3 id="yolov8_1">yolov8</h3>
+<p><a class="glightbox" href="../pics/yolov8.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../pics/yolov8.jpg" /></a></p>
+<h4 id="backboneneck">backbone和neck</h4>
+<ul>
+<li>第一个卷积层的 kernel 从 6x6 变成了 3x3</li>
+<li>所有的 C3 模块换成 C2f，结构如下所示，可以发现多了更多的跳层连接和额外的 Split 操作</li>
+<li>去掉了 Neck 模块中的 2 个卷积连接层</li>
+<li>Backbone 中 C2f 的block 数从 3-6-9-3 改成了 3-6-6-3</li>
+<li>查看 N/S/M/L/X 等不同大小模型，可以发现 N/S 和 L/X 两组模型只是改了缩放系数，但是 S/M/L 等骨干网络的通道数设置不一样，没有遵循同一套缩放系数。如此设计的原因应该是同一套缩放系数下的通道设置不是最优设计，YOLOv7 网络设计时也没有遵循一套缩放系数作用于所有模型</li>
+</ul>
+<p>Head 部分变化最大，从原先的耦合头变成了解耦头，并且从 YOLOv5 的 Anchor-Based 变成了 Anchor-Free<br />
+可以看出，不再有之前的 objectness 分支，只有解耦的分类和回归分支，并且其回归分支使用了 Distribution Focal Loss 中提出的积分形式表示法<br />
+其结构如下所示：<br />
+<a class="glightbox" href="../pics/yolo_head.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../pics/yolo_head.png" /></a></p>
+<p><strong>Generalized Focal Loss</strong><br />
+之前面临的问题：<br />
+1. 类别分数和框的质量分数分开训练 不够端到端
+<a class="glightbox" href="./pics/GFL_1.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="./pics/GFL_1.jpg" /></a>
+2. 坐标框回归的方式不够灵活 没有办法建模复杂场景下的情况 希望用一种general的分布去建模边界框的表示</p>
+<p>对于第一个问题，为了保证training和test一致，同时还能够兼顾分类score和质量预测score都能够训练到所有的正负样本，将两者的表示进行联合。从物理上来讲，我们依然还是保留分类的向量，但是对应类别位置的置信度的物理含义不再是分类的score，而是改为质量预测的score<br />
+对于第二个问题，我们选择直接回归一个任意分布来建模框的表示。当然，在连续域上回归是不可能的，所以可以用离散化的方式，通过softmax来实现即可  </p>
+<p><strong>Focal Loss</strong><br />
+为了解决单阶段目标检测场景存在的前景类和背景类之间的极端不平衡，缩放因子在训练期间自动降低简单示例的贡献，并且快速将模型集中在困难的例子上<br />
+$$
+\text{FL}(p) = -(1 - p_t)^\gamma \log(p_t), \quad p_t = \begin{cases} 
+p, &amp; \text{when } y = 1 \ 
+1 - p, &amp; \text{when } y = 0 
+\end{cases}
+$$</p>
+<p><strong>Quality Focal Loss</strong><br />
+为了将定位和分类联合，y表示训练期间预测边界框与其相应的地面实况边界框之间的 IoU 分数，动态值为 0∼1<br />
+采用 sigmoid 运算符 σ(·) 的多重二元分类来进行多类实现<br />
+由于不平衡问题仍在存在，需要在Focal Loss基础上进行扩展，使支持连续标签<br />
+（1）将交叉熵部分 − log(pt) 扩展为其完整版本 −((1 − y) log( 1 − σ) + y log(σ)); (2) 比例因子部分 (1 − pt)γ 被推广为估计 σ 与其连续标签 y 之间的绝对距离，即 |y − σ|β (β ≥ 0)<br />
+完整的公式如下<br />
+$$
+\text{QFL}(\sigma) = -|y - \sigma|^\beta \left( (1 - y) \log(1 - \sigma) + y \log(\sigma) \right).
+$$
+参数 β 控制权重降低率（实验得到 β = 2 最合适）  </p>
+<p><strong>Distribution Focal Loss</strong> </p>
+<h4 id="c2f">C2f模块</h4>
+<p>将yolov5中的C3模块换成梯度流更丰富的C2f模块<br />
+csp模块的示意图如下：<br />
+<a class="glightbox" href="../pics/csp.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../pics/csp.png" /></a>
+c2f实际上就是在csp模块前面多加了一个卷积，前后总共有两个卷积<br />
+模块代码如下  </p>
+<pre><code class="language-python">class C2f(nn.Module):
+    &quot;&quot;&quot;CSP Bottleneck with 2 convolutions.&quot;&quot;&quot;
+
+    def __init__(self, c1, c2, n=1, shortcut=False, g=1, e=0.5):
+        &quot;&quot;&quot;Initialize CSP bottleneck layer with two convolutions with arguments ch_in, ch_out, number, shortcut, groups,
+        expansion.
+        &quot;&quot;&quot;
+        super().__init__()
+        self.c = int(c2 * e)  # hidden channels
+        self.cv1 = Conv(c1, 2 * self.c, 1, 1)
+        self.cv2 = Conv((2 + n) * self.c, c2, 1)  # optional act=FReLU(c2)
+        self.m = nn.ModuleList(Bottleneck(self.c, self.c, shortcut, g, k=((3, 3), (3, 3)), e=1.0) for _ in range(n))
+
+    def forward(self, x):
+        &quot;&quot;&quot;Forward pass through C2f layer.&quot;&quot;&quot;
+        y = list(self.cv1(x).chunk(2, 1))
+        y.extend(m(y[-1]) for m in self.m)
+        return self.cv2(torch.cat(y, 1))
+
+    def forward_split(self, x):
+        &quot;&quot;&quot;Forward pass using split() instead of chunk().&quot;&quot;&quot;
+        y = list(self.cv1(x).split((self.c, self.c), 1))
+        y.extend(m(y[-1]) for m in self.m)
+        return self.cv2(torch.cat(y, 1))
+</code></pre>
+<h4 id="_4">损失计算</h4>
+<p>yolov8采用了动态分配正负样本策略 根据分类与回归的分数加权的分数选择正样本<br />
+具体步骤为：<br />
+计算真实框和预测框的匹配程度<br />
+$$ align_metric= s ^\alpha *u^\beta $$
+其中，s是预测类别分值，u是预测框和真实框的ciou值，α和β为权重超参数，两者相乘就可以衡量匹配程度，当分类的分值越高且ciou越高时，align_metric的值就越接近于1,此时预测框就与真实框越匹配，就越符合正样本的标准<br />
+对于每个真实框，直接对align_metric匹配程度排序，选取topK个预测框作为正样本<br />
+对一个预测框与多个真实框匹配测情况进行处理，保留ciou值最大的真实框<br />
+分类分支依然采用 BCE Loss<br />
+回归分支需要和 Distribution Focal Loss 中提出的积分形式表示法绑定，因此使用了 Distribution Focal Loss， 同时还使用了 CIoU Loss<br />
+3个Loss 采用一定权重比例加权即可  </p>
+<h4 id="_5">数据增强和训练策略</h4>
+<p>最后 10 个 epoch 关闭 Mosaic 的操作<br />
+<a class="glightbox" href="../pics/yolov8_train.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../pics/yolov8_train.png" /></a></p>
+<p>训练参数如下<br />
+| 配置项                 | 参数值                         |
+|-----------------------|-------------------------------|
+| optimizer             | SGD                           |
+| base learning rate    | 0.01                          |
+| base weight decay     | 0.0005                        |
+| optimizer momentum    | 0.937                         |
+| batch size            | 128                           |
+| learning rate schedule| linear                        |
+| training epochs       | 500                           |
+| warmup iterations     | max(1000, 3 * iters_per_epoch)|
+| input size            | 640x640                       |
+| EMA decay             | 0.9999                        |</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ebd0bdb7.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

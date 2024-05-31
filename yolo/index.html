@@ -930,7 +930,7 @@
 <p><strong>Generalized Focal Loss</strong><br />
 之前面临的问题：<br />
 1. 类别分数和框的质量分数分开训练 不够端到端
-<a class="glightbox" href="./pics/GFL_1.jpg" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="./pics/GFL_1.jpg" /></a>
+<a class="glightbox" href="../pics/GFL_1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../pics/GFL_1.png" /></a>
 2. 坐标框回归的方式不够灵活 没有办法建模复杂场景下的情况 希望用一种general的分布去建模边界框的表示</p>
 <p>对于第一个问题，为了保证training和test一致，同时还能够兼顾分类score和质量预测score都能够训练到所有的正负样本，将两者的表示进行联合。从物理上来讲，我们依然还是保留分类的向量，但是对应类别位置的置信度的物理含义不再是分类的score，而是改为质量预测的score<br />
 对于第二个问题，我们选择直接回归一个任意分布来建模框的表示。当然，在连续域上回归是不可能的，所以可以用离散化的方式，通过softmax来实现即可  </p>

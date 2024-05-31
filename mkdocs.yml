@@ -7,6 +7,18 @@ nav:
   - mkdocs配置: mkdocs配置.md
   - markdown语法: markdown语法.md
   - 深度学习: 
-    - 参数量分析: 参数量分析.md
+    - 模型介绍:
+      - yolo系列模型: yolo.md
+    - LLM技术: 
+      - 参数量分析: 参数量分析.md
   - 算法: 
     - 卡尔曼滤波: 卡尔曼滤波.md
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML
+plugins:
+   - glightbox

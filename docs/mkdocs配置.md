@@ -17,3 +17,10 @@ MkDocs 默认会将项目目录下的 docs 目录作为默认的根路径，所�
 git add .更新仓库  
 mkdocs gh-deploy 更新页面信息  
 
+## 添加插件
+实现图片点击放大  
+pip install mkdocs-glightbox  
+将插件添加glightbox到您的 mkdocs.yml 插件部分：  
+plugins:  
+   - glightbox  
+

@@ -24,3 +24,9 @@ pip install mkdocs-glightbox
 plugins:  
    - glightbox  
 
+## 正常显示latex公式
+pip install mkdocs python-markdown-math  
+extra_javascript:  
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML  
+markdown_extensions:  
+  - mdx_math  

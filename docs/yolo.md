@@ -124,7 +124,22 @@ $$L=\frac1N\sum_iL_i=\frac1N\sum_i-[y_i\cdot log(p_i)+(1-y_i)\cdot log(1-p_i)]$$
 yolov8引入Anchor-Free的Center-based methods(基于中心点)后，模型从输出“锚框大小偏移量(offest)”变为"预测目标框左、上、右、下边框距目标中心点的距离(ltrb = left, top, right, bottom)"  
 CIOU loss用以令锚框更加接近标签值的损失，在(IOU)交并比损失上加上了宽高比的判据，从而更好在三种几何参数：重叠面积、中心点距离、长宽比上拟合目标框  
 单独的CIOU loss的目标为“预测一个绝对正确的值(标签值)”，在数学上可以看做是一种“狄拉克分布”(一个点概率为无穷大，其他点概率为0),如果把标签认为是"绝对正确的目标"，那么学习出的就是狄拉克分布，概率密度是一条尖锐的竖线。然而真实场景，物体边界并非总是十分明确的  
-为配合Anchor-Free、以及提升泛化性，增加了DFL损失，DFL以交叉熵的形式，去优化与标签y最接近的一左一右2个位置的概率，  
+为配合Anchor-Free、以及提升泛化性，增加了DFL损失，DFL以交叉熵的形式，衡量模型输出分布和真实标签的差异，去优化与标签y最接近的一左一右2个位置的概率。模型输出的是边框在每个位置的概率值，为了防止随机性太强，损失只考虑离真值最近的两个位置，让网络迅速关注标签y附近的值，得到正确结果  
+DFL公式如下  
+$$\mathbf{DFL}(P_i,P_{i+1})=-((y_{i+1}-y)\mathrm{log}(P_i)+(y-y_i)\mathrm{log}(P_{i+1}))$$
+DFL的全局最小解，即$P_i=\frac{y_{i+1}-y}{y_{i+1}-y_i},P_{i+1}=\frac{y-y_i}{y_{i+1}-y_i}$可以保证估计的回归目标\hat{y}无限接近对应的标签y，即$\hat{y}=\sum_{j=0}^nP(y_j)y_j=P_iy_i+P_{i+1}y_{i+1}=\frac{y_{i+1}-y}{y_{i+1}-y_i}y_i+\frac{y-y_i}{y_{i+1}-y_i}y_{i+1}=y$  
+yolov8中的DFL Loss代码如下  
+```
+tl = target.long()  # target left
+tr = tl + 1  # target right
+wl = tr - target  # weight left
+wr = 1 - wl  # weight right
+return (F.cross_entropy(pred_dist, tl.view(-1), reduction='none').view(tl.shape) * wl +
+        F.cross_entropy(pred_dist, tr.view(-1), reduction='none').view(tl.shape) * wr).mean(-1, keepdim=True)
+```
+感觉其实就是一个浮点数由离它最近的两个整数决定，越接近的整数权重越大  
+
+3个Loss 采用一定权重比例加权即可  
 
 
 **Generalized Focal Loss**  
@@ -158,7 +173,6 @@ $$
 
 **Distribution Focal Loss** 
 
-3个Loss 采用一定权重比例加权即可  
 
 ## 数据增强和训练策略
 ### yolov8

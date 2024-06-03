@@ -446,19 +446,30 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       损失计算
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="损失计算">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#yolov8_2" class="md-nav__link">
     <span class="md-ellipsis">
-      数据增强和训练策略
+      yolov8
     </span>
   </a>
   
@@ -466,6 +477,25 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据增强和训练策略
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="数据增强和训练策略">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#yolov8_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      yolov8
+    </span>
+  </a>
   
 </li>
         
@@ -755,19 +785,30 @@
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       损失计算
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="损失计算">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#yolov8_2" class="md-nav__link">
     <span class="md-ellipsis">
-      数据增强和训练策略
+      yolov8
     </span>
   </a>
   
@@ -775,6 +816,25 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据增强和训练策略
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="数据增强和训练策略">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#yolov8_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      yolov8
+    </span>
+  </a>
   
 </li>
         
@@ -798,7 +858,7 @@
                   
 
 
-<h1 id="yolo">yolo系列介绍</h1>
+<h1 id="yolo">YOLO系列介绍</h1>
 <h2 id="_1">性能比较</h2>
 <p>YOLOv8 相比 YOLOv5 精度提升非常多，但是 N/S/M 模型相应的参数量和 FLOPs 都增加了不少</p>
 <table>
@@ -927,32 +987,6 @@
 可以看出，不再有之前的 objectness 分支，只有解耦的分类和回归分支，并且其回归分支使用了 Distribution Focal Loss 中提出的积分形式表示法<br />
 其结构如下所示：<br />
 <a class="glightbox" href="../pics/yolo_head.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../pics/yolo_head.png" /></a></p>
-<p><strong>Generalized Focal Loss</strong><br />
-之前面临的问题：<br />
-1. 类别分数和框的质量分数分开训练 不够端到端
-<a class="glightbox" href="../pics/GFL_1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../pics/GFL_1.png" /></a>
-2. 坐标框回归的方式不够灵活 没有办法建模复杂场景下的情况 希望用一种general的分布去建模边界框的表示</p>
-<p>对于第一个问题，为了保证training和test一致，同时还能够兼顾分类score和质量预测score都能够训练到所有的正负样本，将两者的表示进行联合。从物理上来讲，我们依然还是保留分类的向量，但是对应类别位置的置信度的物理含义不再是分类的score，而是改为质量预测的score<br />
-对于第二个问题，我们选择直接回归一个任意分布来建模框的表示。当然，在连续域上回归是不可能的，所以可以用离散化的方式，通过softmax来实现即可  </p>
-<p><strong>Focal Loss</strong><br />
-为了解决单阶段目标检测场景存在的前景类和背景类之间的极端不平衡，缩放因子在训练期间自动降低简单示例的贡献，并且快速将模型集中在困难的例子上<br />
-$$
-\text{FL}(p) = -(1 - p_t)^\gamma \log(p_t), \quad p_t = \begin{cases} 
-p, &amp; \text{when } y = 1 \ 
-1 - p, &amp; \text{when } y = 0 
-\end{cases}
-$$</p>
-<p><strong>Quality Focal Loss</strong><br />
-为了将定位和分类联合，y表示训练期间预测边界框与其相应的地面实况边界框之间的 IoU 分数，动态值为 0∼1<br />
-采用 sigmoid 运算符 σ(·) 的多重二元分类来进行多类实现<br />
-由于不平衡问题仍在存在，需要在Focal Loss基础上进行扩展，使支持连续标签<br />
-（1）将交叉熵部分 − log(pt) 扩展为其完整版本 −((1 − y) log( 1 − σ) + y log(σ)); (2) 比例因子部分 (1 − pt)γ 被推广为估计 σ 与其连续标签 y 之间的绝对距离，即 |y − σ|β (β ≥ 0)<br />
-完整的公式如下<br />
-$$
-\text{QFL}(\sigma) = -|y - \sigma|^\beta \left( (1 - y) \log(1 - \sigma) + y \log(\sigma) \right).
-$$
-参数 β 控制权重降低率（实验得到 β = 2 最合适）  </p>
-<p><strong>Distribution Focal Loss</strong> </p>
 <h4 id="c2f">C2f模块</h4>
 <p>将yolov5中的C3模块换成梯度流更丰富的C2f模块<br />
 csp模块的示意图如下：<br />
@@ -984,18 +1018,64 @@ c2f实际上就是在csp模块前面多加了一个卷积，前后总共有两�
         y.extend(m(y[-1]) for m in self.m)
         return self.cv2(torch.cat(y, 1))
 </code></pre>
-<h4 id="_4">损失计算</h4>
+<h2 id="_4">损失计算</h2>
+<h3 id="yolov8_2">yolov8</h3>
 <p>yolov8采用了动态分配正负样本策略 根据分类与回归的分数加权的分数选择正样本<br />
 具体步骤为：<br />
 计算真实框和预测框的匹配程度<br />
-$$ align_metric= s ^\alpha *u^\beta $$
+<script type="math/tex; mode=display"> align\_metric= s ^\alpha *u^\beta </script>
 其中，s是预测类别分值，u是预测框和真实框的ciou值，α和β为权重超参数，两者相乘就可以衡量匹配程度，当分类的分值越高且ciou越高时，align_metric的值就越接近于1,此时预测框就与真实框越匹配，就越符合正样本的标准<br />
 对于每个真实框，直接对align_metric匹配程度排序，选取topK个预测框作为正样本<br />
-对一个预测框与多个真实框匹配测情况进行处理，保留ciou值最大的真实框<br />
-分类分支依然采用 BCE Loss<br />
+对一个预测框与多个真实框匹配测情况进行处理，保留ciou值最大的真实框  </p>
+<p>分类分支依然采用 BCE Loss<br />
+<script type="math/tex; mode=display">L=\frac1N\sum_iL_i=\frac1N\sum_i-[y_i\cdot log(p_i)+(1-y_i)\cdot log(1-p_i)]</script>
 回归分支需要和 Distribution Focal Loss 中提出的积分形式表示法绑定，因此使用了 Distribution Focal Loss， 同时还使用了 CIoU Loss<br />
-3个Loss 采用一定权重比例加权即可  </p>
-<h4 id="_5">数据增强和训练策略</h4>
+yolov8引入Anchor-Free的Center-based methods(基于中心点)后，模型从输出“锚框大小偏移量(offest)”变为"预测目标框左、上、右、下边框距目标中心点的距离(ltrb = left, top, right, bottom)"<br />
+CIOU loss用以令锚框更加接近标签值的损失，在(IOU)交并比损失上加上了宽高比的判据，从而更好在三种几何参数：重叠面积、中心点距离、长宽比上拟合目标框<br />
+单独的CIOU loss的目标为“预测一个绝对正确的值(标签值)”，在数学上可以看做是一种“狄拉克分布”(一个点概率为无穷大，其他点概率为0),如果把标签认为是"绝对正确的目标"，那么学习出的就是狄拉克分布，概率密度是一条尖锐的竖线。然而真实场景，物体边界并非总是十分明确的<br />
+为配合Anchor-Free、以及提升泛化性，增加了DFL损失，DFL以交叉熵的形式，衡量模型输出分布和真实标签的差异，去优化与标签y最接近的一左一右2个位置的概率。模型输出的是边框在每个位置的概率值，为了防止随机性太强，损失只考虑离真值最近的两个位置，让网络迅速关注标签y附近的值，得到正确结果<br />
+DFL公式如下<br />
+<script type="math/tex; mode=display">\mathbf{DFL}(P_i,P_{i+1})=-((y_{i+1}-y)\mathrm{log}(P_i)+(y-y_i)\mathrm{log}(P_{i+1}))</script>
+DFL的全局最小解，即$P_i=\frac{y_{i+1}-y}{y_{i+1}-y_i},P_{i+1}=\frac{y-y_i}{y_{i+1}-y_i}$可以保证估计的回归目标\hat{y}无限接近对应的标签y，即$\hat{y}=\sum_{j=0}^nP(y_j)y_j=P_iy_i+P_{i+1}y_{i+1}=\frac{y_{i+1}-y}{y_{i+1}-y_i}y_i+\frac{y-y_i}{y_{i+1}-y_i}y_{i+1}=y$<br />
+yolov8中的DFL Loss代码如下  </p>
+<pre><code>tl = target.long()  # target left
+tr = tl + 1  # target right
+wl = tr - target  # weight left
+wr = 1 - wl  # weight right
+return (F.cross_entropy(pred_dist, tl.view(-1), reduction='none').view(tl.shape) * wl +
+        F.cross_entropy(pred_dist, tr.view(-1), reduction='none').view(tl.shape) * wr).mean(-1, keepdim=True)
+</code></pre>
+<p>感觉其实就是一个浮点数由离它最近的两个整数决定，越接近的整数权重越大  </p>
+<p>3个Loss 采用一定权重比例加权即可  </p>
+<p><strong>Generalized Focal Loss</strong><br />
+之前面临的问题：<br />
+1. 类别分数和框的质量分数分开训练 不够端到端
+<a class="glightbox" href="../pics/GFL_1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../pics/GFL_1.png" /></a>
+2. 坐标框回归的方式不够灵活 没有办法建模复杂场景下的情况 希望用一种general的分布去建模边界框的表示</p>
+<p>对于第一个问题，为了保证training和test一致，同时还能够兼顾分类score和质量预测score都能够训练到所有的正负样本，将两者的表示进行联合。从物理上来讲，我们依然还是保留分类的向量，但是对应类别位置的置信度的物理含义不再是分类的score，而是改为质量预测的score<br />
+对于第二个问题，我们选择直接回归一个任意分布来建模框的表示。当然，在连续域上回归是不可能的，所以可以用离散化的方式，通过softmax来实现即可  </p>
+<p><strong>Focal Loss</strong><br />
+为了解决单阶段目标检测场景存在的前景类和背景类之间的极端不平衡，缩放因子在训练期间自动降低简单示例的贡献，并且快速将模型集中在困难的例子上<br />
+<script type="math/tex; mode=display">
+\text{FL}(p) = -(1 - p_t)^\gamma \log(p_t), \quad p_t = \begin{cases} 
+p, & \text{when } y = 1 \\ 
+1 - p, & \text{when } y = 0 
+\end{cases}
+</script>
+</p>
+<p><strong>Quality Focal Loss</strong><br />
+为了将定位和分类联合，y表示训练期间预测边界框与其相应的地面实况边界框之间的 IoU 分数，动态值为 0∼1<br />
+采用 sigmoid 运算符 σ(·) 的多重二元分类来进行多类实现<br />
+由于不平衡问题仍在存在，需要在Focal Loss基础上进行扩展，使支持连续标签<br />
+（1）将交叉熵部分 − log(pt) 扩展为其完整版本 −((1 − y) log( 1 − σ) + y log(σ)); (2) 比例因子部分 (1 − pt)γ 被推广为估计 σ 与其连续标签 y 之间的绝对距离，即 |y − σ|β (β ≥ 0)<br />
+完整的公式如下<br />
+<script type="math/tex; mode=display">
+\text{QFL}(\sigma) = -|y - \sigma|^\beta \left( (1 - y) \log(1 - \sigma) + y \log(\sigma) \right).
+</script>
+参数 β 控制权重降低率（实验得到 β = 2 最合适）  </p>
+<p><strong>Distribution Focal Loss</strong> </p>
+<h2 id="_5">数据增强和训练策略</h2>
+<h3 id="yolov8_3">yolov8</h3>
 <p>最后 10 个 epoch 关闭 Mosaic 的操作<br />
 <a class="glightbox" href="../pics/yolov8_train.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../pics/yolov8_train.png" /></a></p>
 <p>训练参数如下<br />
@@ -1062,11 +1142,7 @@ $$ align_metric= s ^\alpha *u^\beta $$
     
       <script src="../assets/javascripts/bundle.ebd0bdb7.min.js"></script>
       
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-      
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
       
     
   <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
